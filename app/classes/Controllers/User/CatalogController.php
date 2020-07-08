@@ -3,6 +3,7 @@
 namespace App\Controllers\User;
 
 use App\Controllers\BaseController;
+use App\Services\Service;
 use App\Views\Catalog;
 use App\Views\Content;
 
@@ -12,7 +13,7 @@ class CatalogController extends BaseController
     {
         parent::__construct();
 
-        $this->page->setTitle('Pagrindinis');
+        $this->page->setTitle('Home');
     }
 
     /**
@@ -57,32 +58,27 @@ class CatalogController extends BaseController
             $h1 = 'You are not logged in !';
         }
 
-//        $drinks = \App\Drinks\Model::getWhere();
-//        if ($drinks) {
-//            $catalog = [];
-//
-//            foreach ($drinks as $key => $drink) {
-//                $catalog[$key]['drink'] = $drink;
-//
-//                if (\App\App::$session->userIs(\App\Users\User::ROLE_USER)) {
-//                    $form = new \App\Views\Forms\Catalog\AddServiceForm($drink->getId());
-//                    $catalog[$key]['form'] = $form;
-//                }
-//            }
-//            $catalog = new \App\Views\Catalog($catalog);
-//        } else {
-//            $catalog = new Catalog();
-//        }
+        $services = \App\Services\Model::getWhere();
+        if ($services) {
+            $catalog = [];
+
+            foreach ($services as $service) {
+                $catalog['service'] = $service;
+
+                if (\App\App::$session->userIs(\App\Users\User::ROLE_USER)) {
+                    $form = new \App\Views\Forms\Catalog\AddServiceForm($service->getId());
+                    $catalog['form'] = $form;
+                }
+            }
+            $catalog = new \App\Views\Catalog($catalog);
+        } else {
+            $catalog = new Catalog();
+        }
 
         if (isset($form) && $form->isSubmitted() && $form->validate()) {
             $safe_input = $form->getSubmitData();
             $safe_input['user_id'] = (\App\App::$session->getUser())->getId();
-//            $item = new \App\Cart\Items\Item($safe_input);
-//            $item->setStatus(\App\Cart\Items\Item::STATUS_IN_CART);
-//
-//            $item_id = \App\Cart\Items\Model::insert($item);
-//            $item->setId($item_id);
-//            \App\Cart\Items\Model::update($item);
+
         }
 
         $catalog = new \App\Views\Catalog();

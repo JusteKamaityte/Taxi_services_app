@@ -16,7 +16,7 @@ class FeedbackForm extends Form
             'fields' => [
 //                'feedback' => [
 //                    'label' => 'Write your feedback here',
-//                    'type' => 'textarea',
+//                    'type' => 'text',
 //                    'value' => '',
 //                    'validators' => [
 //                        'validate_not_empty'
@@ -37,7 +37,6 @@ class FeedbackForm extends Form
                     'validators' => [
                         'validate_not_empty',
                         'validate_email',
-                        'validate_email_unique'
                     ],
                 ],
             ],

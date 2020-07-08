@@ -9,11 +9,6 @@ use Core\DataHolder;
 class Feedback extends Dataholder
 {
 
-    const STATUS_SUBMITTED = 0;
-    const STATUS_SHIPPED = 1;
-    const STATUS_DELIVERED = 2;
-    const STATUS_CANCELLED = 3;
-
     /**
      * Metodas nustatantis id reiksme duomenu masyve.
      * @param $id
@@ -109,21 +104,21 @@ class Feedback extends Dataholder
 
 
     /**
-     * Metodas nustatantis uzsakymo status reiksme duomenu masyve.
-     * @param int $status
+     * Metodas nustatantis vartotojo name reiksme, duomenu masyve.
+     * @param string $name
      */
-    public function setStatus($status): void
+    public function setName(string $name): void
     {
-        $this->status = $status;
+        $this->name = $name;
     }
 
     /**
-     * Metodas grazinantis uzsakymo status reiksme is duomenu masyvo.
-     * @return mixed|null
+     * Metodas grazinantis vartotojo name reiksme is duomenu masyvo.
+     * @return string|null
      */
-    public function getStatus(): ?int
+    public function getName(): ?string
     {
-        return $this->status ?? null;
+        return $this->name ?? null;
     }
 
     /**
@@ -135,36 +130,6 @@ class Feedback extends Dataholder
         return \App\Users\Model::get($this->getUserId());
     }
 
-    /**
-     * Globalus metodas grazinantis statuso pavadinima
-     * pagal status_id
-     * @param int|null $status_id
-     * @return string
-     */
-    public function _getStatusName(int $status_id = null)
-    {
-        $status_id = $status_id ?? $this->getStatus();
-
-        switch ($status_id) {
-            case self::STATUS_SUBMITTED:
-                $status = 'Pateikta';
-                break;
-            case self::STATUS_SHIPPED:
-                $status = 'Išsiųsta';
-                break;
-            case self::STATUS_DELIVERED:
-                $status = 'Pristatyta';
-                break;
-            case self::STATUS_CANCELLED:
-                $status = 'Atšaukta';
-                break;
-
-            default:
-                $status = '-';
-        }
-
-        return $status;
-    }
 
 }
 

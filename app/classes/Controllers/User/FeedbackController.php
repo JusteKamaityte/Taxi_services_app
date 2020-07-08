@@ -58,17 +58,17 @@ class FeedbackController extends BaseController
     {
         require ROOT . '/app/data/tables/feedback.php';
 
-        $user_id = \App\App::$session->getUser()->getId();
-        $form = new FeedbackForm($user_id);
+        $user = \App\App::$session->getUser();
+//        $user ? $user_role = $user->getRole() : null;
+        $form = new FeedbackForm($user);
 
-
-        $feedbacks = \App\Feedbacks\Model::getWhere(['user_id' => \App\App::$session->getUser()->getId()]);
-        if ($feedbacks) {
-            foreach ($feedbacks as $comment) {
+        $user = \App\Feedbacks\Model::getWhere([]);
+        if ($user) {
+            foreach ($user as $comment) {
                 $delete = new Delete($comment->getId());
 
                 $row = [
-                    'id' => $comment->user()->getId(),
+                    'id' => $comment->getId(),
                     'name' => $comment->getName(),
                     'date' => $comment->getDate(),
                     'feedback' => $comment->getFeedback(),
@@ -80,25 +80,26 @@ class FeedbackController extends BaseController
             $h1 = 'Feedbacks';
             $table = new \Core\Views\Table();
         } else {
-            $table = new Table();
             $h1 = 'Want to leave a feedback register !';
         }
 
 
         if ($form->isSubmitted() && $form->validate()) {
             $safe_input = $form->getSubmitData();
-            $user = new \App\Users\User($safe_input);
-            $user->setRole(\App\Users\User::ROLE_USER);
+            $feedback = new \App\Feedbacks\Feedback($safe_input);
+            $feedback->setRole(\App\Users\User::ROLE_USER);
 
-            $user_id = \App\Users\Model::insert($user);
-            $user->setId($user_id);
-            \App\Users\Model::update($user);
+            $feedback_id = \App\Feedbacks\Model::insert($user);
+            $feedback->setId($feedback_id);
+            \App\Feedbacks\Model::update($feedback);
             header("Location: /feedback");
+        } elseif($user) {
+            $h1 = 'If you want to leave us your opinion about our company, please register !';
         }
 
         $content = new Content([
-            'h1' => 'Feedbacks',
-            'table' => $table->render(),
+            'h1' => $h1,
+//            'table' => $table->render(),
             'form' => $form->render()
         ]);
 

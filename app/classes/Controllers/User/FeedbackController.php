@@ -93,8 +93,6 @@ class FeedbackController extends BaseController
             $feedback->setId($feedback_id);
             \App\Feedbacks\Model::update($feedback);
             header("Location: /feedback");
-        } elseif($user) {
-            $h1 = 'If you want to leave us your opinion about our company, please register !';
         }
 
         $content = new Content([

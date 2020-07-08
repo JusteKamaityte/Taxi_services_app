@@ -14,14 +14,6 @@ class FeedbackForm extends Form
                 'class' => 'feedback-form'
             ],
             'fields' => [
-//                'feedback' => [
-//                    'label' => 'Write your feedback here',
-//                    'type' => 'text',
-//                    'value' => '',
-//                    'validators' => [
-//                        'validate_not_empty'
-//                    ],
-//                ],
                 'name' => [
                     'label' => 'Name',
                     'type' => 'text',

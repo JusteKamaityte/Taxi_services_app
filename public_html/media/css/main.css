@@ -1,0 +1,365 @@
+* {
+    box-sizing: border-box;
+}
+html{
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /*height: 100vh;*/
+}
+
+#add-edit-form-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add-edit-drink-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*width: 50%;*/
+    padding: 20px 10px;
+    background-color: grey;
+}
+
+.add-edit-drink-form input {
+    display: block;
+    width: 100%;
+    height: 25px;
+
+}
+
+.add-edit-drink-form label {
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+/*.add-edit-drink-form label:not(:first-of-type) {*/
+/*    font-size: 2em;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+.add-edit-drink-form button {
+    height: 25px;
+    margin-top: 20px;
+    background-color: orange;
+    border: none;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.table-container table, tr, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    text-align: center;
+}
+
+#drinks-table-container table td:nth-child(7) {
+    border-right: none;
+}
+
+#drinks-table-container table td:last-of-type {
+    border-left: none;
+}
+
+.admin-btn-edit, .delete-btn, .view-order-btn {
+    text-decoration: none;
+    color: white;
+    font: 400 14px Roboto;
+    background-color: forestgreen;
+    border: 1px outset #767676;
+    padding: 3px 7px;
+    cursor: pointer;
+}
+
+#delete-btn {
+    margin: 0;
+}
+
+form .reg-login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    border: grey;
+    background-color: grey;
+    padding: 20px 50px;
+    margin-bottom: 100px;
+}
+
+.reg-login-form input {
+    display: block;
+    width: 100%;
+    height: 25px;
+    /*border: 0;*/
+    border: 1px solid grey;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+    /*background-color: grey;*/
+    color: grey;
+}
+.reg-login-form placeholder{
+    color:white;
+}
+.reg-login-form label {
+    font-size: 12px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    color: grey;
+}
+
+.reg-login-form label:not(:first-of-type) {
+    margin-top: 20px;
+}
+
+.reg-login-form button {
+    width: 95%;
+    height: 40px;
+    margin-top: 20px;
+    border: none;
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#admin-order-status {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+#admin-order-status label {
+    width: 100%;
+    font-weight: bold;
+}
+
+#admin-order-status select {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px 15px 5px 5px;
+}
+
+#admin-order-status button {
+    margin-top: 10px;
+}
+
+
+nav {
+    background-color: darkgrey;
+    height: 7%;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav .left-side {
+    padding-left: 30px;
+}
+
+nav .right-side {
+    padding-right: 30px;
+}
+
+nav li {
+    margin-right: 10px;
+    height: 100%;
+}
+
+nav a {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    height: 100%;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+nav a:hover {
+    background-color: #ada397;
+}
+
+.catalog {
+    width: 90%;
+    /*display: flex;*/
+    flex-wrap: wrap;
+}
+
+.catalog {
+    display: grid;
+    /*flex-direction: column;*/
+    align-items: center;
+    margin-bottom: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+    /*width: calc(100% / 4 - 15px);*/
+}
+
+.product-container{
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+
+}
+
+.catalog .product-container:not(:nth-child(4n)) {
+    margin-right: 20px;
+}
+
+.catalog article {
+    position: relative;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+.catalog article span {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+}
+
+.catalog article img {
+    height: 80%;
+}
+
+.catalog .drink-info {
+    width: 100%;
+    text-align: center;
+}
+
+.catalog .drink-info p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.catalog article .drink-info p:last-of-type {
+    margin-bottom: 15px;
+}
+
+.catalog .add-to-cart {
+    background-color: #4584A4;
+    color: white;
+    padding: 5px 20px;
+}
+
+.catalog .in-stock {
+    color: #767676;
+    font-weight: bold;
+    margin: 15px 0 10px;
+}
+
+.buyer-info h3 {
+    margin: 0;
+}
+
+.view-order p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.view-order table {
+    margin-bottom: 10px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    color: white;
+    text-align: center;
+
+}
+
+footer>span{
+    font-size: 10px;
+    color: white;
+
+}
+
+.header-photo {
+    position: relative;
+    transition: 0.3s;
+    /*width: 100%;*/
+    height: 150px;
+    top: 0;
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/taxi.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+h1{
+    color: grey;
+}
+
+@media screen and (min-width: 400px) {
+
+   .header-photo{
+        width: 100%;
+        /*height: 150px;*/
+        top: 0;
+        object-fit: scale-down;
+        background-image:  url("../../assets/taxi.jpg");
+    }
+
+    h1{
+
+    }
+
+}

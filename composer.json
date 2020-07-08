@@ -1,0 +1,9 @@
+{
+  "name": "Project_name",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/classes",
+      "Core\\": "core/classes"
+    }
+  }
+}
